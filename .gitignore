@@ -1,3 +1,2 @@
-
-*.sum
 ddate/go.mod
+*.exe
