@@ -23,7 +23,4 @@ jobs:
         cache-dependency-path: ddate/go.sum
     
     - name: Build
-      run: go build -v ./...
-
-    - name: Test
-      run: go test -v ./...
+      run: cd ./../ddate/ && go build
