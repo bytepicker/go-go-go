@@ -39,12 +39,10 @@ func getCurrentDate(w http.ResponseWriter, r *http.Request) {
 func convert(now time.Time) discordianDate {
 	ddate := discordianDate{}
 
-	discordianDay := (now.YearDay() - 1) / hailEris
-
 	ddate.Year = now.Year() + initialYearPadding
-	ddate.Season = seasonNames[discordianDay]
-	ddate.Day = dayNames[discordianDay+1]
-	ddate.Number = (now.YearDay()-1)%hailEris + 1
+	ddate.Season = seasonNames[(now.YearDay()-1)/hailEris]
+	ddate.Day = dayNames[(now.YearDay()-1)%hailEris%5]
+	ddate.Number = now.YearDay() % 73
 
 	if ddate.Number == 5 {
 		ddate.Holyday = holydaysFive[now.YearDay()%5]
